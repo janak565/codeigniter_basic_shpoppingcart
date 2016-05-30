@@ -85,3 +85,4 @@ class Orders extends CI_Controller
 		$this->load->view('orders/add_prouct');
 	} 
 }
+http://www.mysqltutorial.org/mysql-foreign-key/
