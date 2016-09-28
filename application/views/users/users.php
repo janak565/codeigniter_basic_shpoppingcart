@@ -1,6 +1,9 @@
 <?php
+$id = '';
+  if(!empty($data['id'])){$id = $data['id']; }
+//print_r(data);
 $attributes = array('class' => 'frmusers', 'name' => 'frm_users' , 'id'=>"frmusers"); 
-echo form_open_multipart(base_url('users/index'), $attributes); ?>
+echo form_open_multipart(base_url('users/save_users/'.$id), $attributes); ?>
 <!-- <php echo base_url('test');if(!isset($data['id']) && empty($data['id'])){ echo form_open_multipart(base_url('user/index');}else{ echo form_open_multipart(base_url('user/index');}?> -->
 <table border=1; colspan="0"; colspace="0" width="100%">
 <?php if(!empty($this->session->flashdata('message'))){ ?>
@@ -25,7 +28,7 @@ echo form_open_multipart(base_url('users/index'), $attributes); ?>
 <tr>
 		<th align="right" valign="top" width="20%">email</th>
 		<td>
-				<input type="text" name="email" class="form_input" id="email" value="<?php if(!empty($data['eamail'])){echo html_escape($data['email']); }?>"/>
+				<input type="text" name="email" class="form_input" id="email" value="<?php if(!empty($data['email'])){echo html_escape($data['email']); }?>"/>
 		</td>
 	</tr>
 	<tr>
@@ -39,8 +42,8 @@ echo form_open_multipart(base_url('users/index'), $attributes); ?>
 		<td>
 			<select name="general" id="general">
 				<option value="">Select</option>
-				<option value="male">Male</option>
-				<option  value="female">FeMale</option>
+				<option <?php if($data['general']=='male'){?> selected <?php }?> value="male">Male</option>
+				<option  <?php if($data['general']=='female'){?> selected <?php }?> value="female">FeMale</option>
 			</select>	
 				
 				<?php echo form_error('general');?>
@@ -77,13 +80,12 @@ $('input[type=file]').on('change', prepareUpload);
 	},	
 		submitHandler: function(form) 
 		{
-			data = $('#frmusers').serializeArray();
-			//var data= [];
-			$.each(data, function(i, field){
-        $("#results").append(field.name + ":" + field.value + " ");
+			return true;
+		},
+	//return false;		
     });
-			//return false
-			var data1 = $('#results').html();
+		//	return false;
+		/*	var data1 = $('#results').html();
     $.each(files, function(key, value)
     {
     	console.log(key);
@@ -110,6 +112,6 @@ $('input[type=file]').on('change', prepareUpload);
 		});
 			return false;
 		}
-	});
+	});*/
 
 </script>
