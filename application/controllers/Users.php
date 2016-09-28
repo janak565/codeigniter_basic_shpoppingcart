@@ -20,6 +20,11 @@ class Users extends CI_Controller
 		//load then pagination library
 		$this->load->library('pagination');
 
+		//load then user agent library
+		$this->load->library('user_agent');
+
+		$this->load->helper('url');
+
 	}
 	
 	/**
@@ -91,17 +96,74 @@ class Users extends CI_Controller
 		$this->pagination->initialize($paginationconfig);
 	} 
 
-	public function index()
+	/**
+	* add form  
+	* 
+	* @access public
+	* 
+	*/
+
+
+	public function index($id=0)
 	{
+		if(isset($id) && !empty($id))
+		{
+			$user_data = $this->Users_model->fetch_record_userByid($id);
+			$user['data'] = (array) $user_data[0];
+	
+		}
+		else
+		{
+			$user['data'] = array();
+		}	
+		//$user_data = $this->Users_model->fetch_record_userByid(1);
+		//$user['data'] = (array) $user_data[0];
+		//print_r($user);
 		$this->load->view('header');
-		$this->load->view('users/users');
+		$this->load->view('users/users', $user);
 		$this->load->view('footer');
 	}
 
-	public function save_users()
+	/**
+	* add form  
+	* 
+	* @access public
+	* 
+	*/	
+	public function save_users($id=0)
 	{
-		echo "te";
-		print_r($_FILES);
-		exit;
+		if(!empty($this->input->post('btn_save')))
+		
+		$data['name'] = $this->input->post('name');
+		$data['phone'] = $this->input->post('phone');
+		$data['email'] = $this->input->post('email');
+		$data['general'] = $this->input->post('general');
+		{
+
+			if(isset($id) && !empty($id))
+			{
+				if($this->Users_model->Update($id,$data))
+				{
+					//set message
+					$this->session->set_flashdata('message', 'User Information is Updated Sucessfully');
+					//redirect('/users/manage_users', 'refresh');
+					redirect($this->agent->referrer());
+				}	
+			}
+			else
+			{
+				//print_r($this->Users_model->Save($data));
+				//insert record in user table	
+				if($this->Users_model->Save($data))
+				{
+			
+					//set message	
+					$this->session->set_flashdata('message', 'User Information is added Sucessfully');
+					redirect('/users/manage_users', 'refresh');
+
+				}	
+			}	
+
+		}
 	}
 }
