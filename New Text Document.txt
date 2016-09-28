@@ -1,0 +1,13 @@
+1) http://stackoverflow.com/questions/9124560/how-to-expire-php-session-if-user-is-inactive-for-15-mins
+
+//3 TIme pass password
+2) http://www.dreamincode.net/forums/topic/286198-simple-login-page-with-only-3-password-attempts/
+
+// SESSION EXPIRE 15 MIN
+3) http://www.dynamicdrive.com/forums/showthread.php?25939-Automatic-Logout-after-15-minutes-of-inactive
+
+//CURD OPERATION
+4) http://mbahcoding.com/tutorial/php/codeigniter/codeigniter-ajax-crud-modal-server-side-validation.html
+
+//popup
+5) http://stackoverflow.com/questions/13183630/how-to-open-a-bootstrap-modal-window-using-jquery
