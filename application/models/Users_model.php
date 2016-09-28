@@ -93,4 +93,78 @@ class Users_model extends CI_Model{
 		}
 		return false;
 	}
+
+	/**
+	* add record in users table  
+	*
+	* @access public
+	*
+	* @param array $data
+	*
+	* @return integer id
+	*
+	*/
+
+	public function Save($data)
+	{
+
+		// insert record of user 
+		 $this->db->trans_start();
+		 $this->db->insert($this->_tablename, $data);
+		 $id =  $this->db->insert_id();
+		 $this->db->trans_complete();
+		 return $id;
+	}
+
+	/**
+	* update record in users table  
+	* 
+	* @access public
+	*
+	* @param interger $id
+	*
+	* @param array $data
+	*
+	* @return integer id
+	*/
+	public function Update($id,$data)
+	{
+		//update record of user
+		$this->db->where('id', $id);
+		$this->db->update($this->_tablename, $data);
+		return $id;
+	}
+
+	/**
+	* delete record in users table  
+	* 
+	* @access public
+	*
+	* @param interger $id
+	*
+	* @return integer id
+	*/
+
+	public function Delete($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete($this->_tablename);
+		return $id;
+	}
+
+	/**
+	* fetch array record  
+	* 
+	* @access public
+	*
+	* @param mix $query
+	*
+	* @return array $data	*
+	*/
+
+	public function query($query)
+	{
+		$query = $this->db->query($query);
+		return $data = $query->result_array();
+	}
 }	
