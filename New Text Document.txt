@@ -11,3 +11,6 @@
 
 //popup
 5) http://stackoverflow.com/questions/13183630/how-to-open-a-bootstrap-modal-window-using-jquery
+
+//login and registrer form 
+6) https://github.com/kasunbuddhima/codeigniter-signup-form-with-email-verification 
